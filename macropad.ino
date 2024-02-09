@@ -209,7 +209,7 @@ void loop() {
       button(11);
     }
 
-    // row 2
+    // row 5
     if (row5b1.click()) {
       button(12);
     }
