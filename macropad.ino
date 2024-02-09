@@ -1,13 +1,13 @@
 #include <EncButton.h>
 #include <EEPROM.h>
 
-//#include <Keyboard.h>
-//#include <KeyboardLayout.h>
 #include <HID-Project.h>
 
 const int ROW1PIN = A0;
 const int ROW2PIN = A1;
 const int ROW3PIN = A2;
+const int ROW4PIN = A3;
+const int ROW5PIN = A4;
 
 #define EE_RESET 14     // любое число 0-255. Измени, чтобы сбросить настройки
 
@@ -30,6 +30,18 @@ VirtButton row1b3;
 VirtButton row2b1;
 VirtButton row2b2;
 VirtButton row2b3;
+// row3
+VirtButton row3b1;
+VirtButton row3b2;
+VirtButton row3b3;
+// row4
+VirtButton row4b1;
+VirtButton row4b2;
+VirtButton row4b3;
+// row5
+VirtButton row5b1;
+VirtButton row5b2;
+VirtButton row5b3;
 
 // encoders
 EncButtonT<7, 8, 6> enc1;
@@ -120,6 +132,8 @@ void loop() {
     int r1 = analogRead(ROW1PIN);
     int r2 = analogRead(ROW2PIN);
     int r3 = analogRead(ROW3PIN);
+    int r4 = analogRead(ROW4PIN);
+    int r5 = analogRead(ROW5PIN);
 
     row1b1.tick(r1 < 17 && r1 > 0);
     row1b2.tick(r2 < 17 && r2 > 0);
@@ -128,6 +142,18 @@ void loop() {
     row2b1.tick(r1 < 45 && r1 > 35);
     row2b2.tick(r2 < 45 && r2 > 35);
     row2b3.tick(r3 < 45 && r3 > 35);
+
+    row3b1.tick(r1 < 55 && r1 > 45);
+    row3b2.tick(r2 < 55 && r2 > 45);
+    row3b3.tick(r3 < 55 && r3 > 45);
+
+    row4b1.tick(r1 < 65 && r1 > 55);
+    row4b2.tick(r2 < 65 && r2 > 55);
+    row4b3.tick(r3 < 65 && r3 > 55);
+
+    row5b1.tick(r1 < 75 && r1 > 65);
+    row5b2.tick(r2 < 75 && r2 > 65);
+    row5b3.tick(r3 < 75 && r3 > 65);
 
     //Serial.println(r1);
 
@@ -155,6 +181,45 @@ void loop() {
 
     if (row2b3.click()) {
       button(5);
+    }
+
+    // row 3
+    if (row3b1.click()) {
+      button(6);
+    }
+
+    if (row3b2.click()) {
+      button(7);
+    }
+
+    if (row3b3.click()) {
+      button(8);
+    }
+    
+    // row 4
+    if (row4b1.click()) {
+      button(9);
+    }
+
+    if (row4b2.click()) {
+      button(10);
+    }
+
+    if (row4b3.click()) {
+      button(11);
+    }
+
+    // row 2
+    if (row5b1.click()) {
+      button(12);
+    }
+
+    if (row5b2.click()) {
+      button(13);
+    }
+
+    if (row5b3.click()) {
+      button(14);
     }
   }
 }
